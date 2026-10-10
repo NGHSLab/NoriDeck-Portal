@@ -530,7 +530,6 @@ footer .wrap {
 .intro-art {
   width: 320px;
   height: auto;
-  filter: drop-shadow(0 20px 36px rgba(14, 26, 34, 0.18));
 }
 @media (max-width: 760px) {
   .intro .wrap {
