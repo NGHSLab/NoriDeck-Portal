@@ -528,7 +528,8 @@ footer .wrap {
   color: var(--mint-ink);
 }
 .intro-art {
-  width: 320px;
+  width: 240px;
+  margin: 0 40px;
   height: auto;
 }
 @media (max-width: 760px) {
