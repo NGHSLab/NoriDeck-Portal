@@ -3,3 +3,4 @@ package-lock.json
 site/assets/vendor
 README
 LICENSE
+deploy/nginx
