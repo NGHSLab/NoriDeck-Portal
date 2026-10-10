@@ -1,0 +1,21 @@
+{
+  "name": "norideck-portal",
+  "private": true,
+  "type": "module",
+  "description": "Static intro and install site for the NoriDeck console (installers from GitHub Releases)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "stats": "node scripts/download-stats.mjs",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run format:check && npm test"
+  },
+  "devDependencies": {
+    "prettier": "^3.9.9"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

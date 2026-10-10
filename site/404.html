@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="NoriDeck" />
+    <meta property="og:description" content="NoriDeck 콘솔 다운로드, 사용 방법, 관련 링크" />
+    <meta property="og:image" content="/assets/img/deck-front@2x.png" />
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/img/favicon-256.png" type="image/png" sizes="256x256" />
+    <link rel="apple-touch-icon" href="/assets/img/app-icon-256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <!-- 영어를 고른 방문자에게 한국어가 잠깐 보이지 않도록 가장 먼저 언어를 정한다 -->
+    <script src="/assets/js/locale-boot.js"></script>
+    <title data-i18n="title.home">NoriDeck</title>
+    <meta
+      name="description"
+      content="NoriDeck 콘솔 다운로드, 사용 방법, 관련 링크"
+      data-i18n-attr="content:meta.description"
+    />
+    <script type="module" src="/assets/js/page.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="nav.skip">본문으로 건너뛰기</a>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="/">NoriDeck</a>
+        <nav class="nav-links" aria-label="주요 메뉴" data-i18n-attr="aria-label:nav.menu">
+          <a href="/#guide" data-i18n="nav.guide">사용 방법</a>
+          <a href="/#dev" data-i18n="nav.dev">카트리지 만들기</a>
+          <a href="/download#history" data-i18n="nav.releases">릴리스 노트</a>
+          <a href="https://tst.norihub.org" target="_blank" rel="noopener noreferrer" class="hub">NoriHub ↗</a>
+        </nav>
+        <div class="nav-right">
+          <div class="lang" id="lang">
+            <button
+              type="button"
+              class="lang-btn"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-label="언어"
+              title="언어"
+              data-i18n-attr="aria-label:nav.language;title:nav.language"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" />
+              </svg>
+            </button>
+            <ul class="lang-menu" role="menu" hidden>
+              <li><button type="button" role="menuitemradio" data-locale="ko" lang="ko">한국어</button></li>
+              <li><button type="button" role="menuitemradio" data-locale="en" lang="en">English</button></li>
+            </ul>
+          </div>
+          <a class="btn btn-primary" href="/download" data-i18n="nav.download">다운로드</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <div class="page">
+        <div class="wrap state">
+          <h2 data-i18n="nf.title">페이지를 찾을 수 없습니다</h2>
+          <p style="margin-top: 16px"><a class="btn btn-ghost" href="/" data-i18n="nf.home">홈으로</a></p>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <div class="wrap"><span>© 2026 NGHSLab</span></div>
+    </footer>
+  </body>
+</html>

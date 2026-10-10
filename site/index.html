@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="NoriDeck" />
+    <meta property="og:description" content="NoriDeck 콘솔 다운로드, 사용 방법, 관련 링크" />
+    <meta property="og:image" content="/assets/img/deck-front@2x.png" />
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/assets/img/favicon-256.png" type="image/png" sizes="256x256" />
+    <link rel="apple-touch-icon" href="/assets/img/app-icon-256.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&amp;family=Noto+Sans+KR:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/assets/css/site.css" />
+    <!-- 영어를 고른 방문자에게 한국어가 잠깐 보이지 않도록 가장 먼저 언어를 정한다 -->
+    <script src="/assets/js/locale-boot.js"></script>
+    <title data-i18n="title.home">NoriDeck</title>
+    <meta
+      name="description"
+      content="NoriDeck 콘솔 다운로드, 사용 방법, 관련 링크"
+      data-i18n-attr="content:meta.description"
+    />
+    <script type="module" src="/assets/js/home.js"></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-i18n="nav.skip">본문으로 건너뛰기</a>
+    <header class="nav">
+      <div class="wrap">
+        <a class="brand" href="/">NoriDeck</a>
+        <nav class="nav-links" aria-label="주요 메뉴" data-i18n-attr="aria-label:nav.menu">
+          <a href="/#guide" data-i18n="nav.guide">사용 방법</a>
+          <a href="/#dev" data-i18n="nav.dev">카트리지 만들기</a>
+          <a href="/download#history" data-i18n="nav.releases">릴리스 노트</a>
+          <a href="https://tst.norihub.org" target="_blank" rel="noopener noreferrer" class="hub">NoriHub ↗</a>
+        </nav>
+        <div class="nav-right">
+          <div class="lang" id="lang">
+            <button
+              type="button"
+              class="lang-btn"
+              aria-haspopup="menu"
+              aria-expanded="false"
+              aria-label="언어"
+              title="언어"
+              data-i18n-attr="aria-label:nav.language;title:nav.language"
+            >
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="9" />
+                <path d="M3 12h18M12 3c2.5 2.7 3.8 5.7 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-5.7-3.8-9S9.5 5.7 12 3z" />
+              </svg>
+            </button>
+            <ul class="lang-menu" role="menu" hidden>
+              <li><button type="button" role="menuitemradio" data-locale="ko" lang="ko">한국어</button></li>
+              <li><button type="button" role="menuitemradio" data-locale="en" lang="en">English</button></li>
+            </ul>
+          </div>
+          <a class="btn btn-primary" href="/download" data-i18n="nav.download">다운로드</a>
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="intro">
+        <div class="wrap">
+          <div>
+            <h1>NoriDeck</h1>
+            <p class="lead muted" data-i18n-html="home.lead">
+              <b class="strong">.nori</b> 카트리지를 실행하는 데스크톱 게임 콘솔입니다. 이 사이트에서 콘솔을 받고, 사용
+              방법과 관련 링크를 확인할 수 있습니다.
+            </p>
+            <div class="cta">
+              <a class="btn btn-primary" id="hero-download" href="/download">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+                </svg>
+                <span id="hero-download-label" data-i18n="home.download">다운로드</span>
+              </a>
+              <a
+                class="btn btn-ghost"
+                href="https://tst.norihub.org"
+                target="_blank"
+                rel="noopener noreferrer"
+                data-i18n="home.hubButton"
+                >NoriHub 에서 카트리지 찾기 ↗</a
+              >
+            </div>
+            <p class="fine muted" id="latest-line">
+              <a href="/download#history" data-i18n="home.changes">변경 내역</a>
+            </p>
+          </div>
+          <img
+            class="intro-art"
+            src="/assets/img/deck-front.webp"
+            alt="NoriDeck 콘솔"
+            data-i18n-attr="alt:home.imageAlt"
+            width="360"
+            height="260"
+          />
+        </div>
+      </section>
+
+      <section id="guide" class="tint">
+        <div class="wrap">
+          <h2 data-i18n="guide.title">사용 방법</h2>
+          <ol class="guide">
+            <li>
+              <h3 data-i18n="guide.install.title">설치</h3>
+              <p class="muted" data-i18n-html="guide.install.body">
+                <a href="/download">다운로드</a> 에서 설치 파일(.exe)을 받아 실행합니다. 설치 없이 쓰려면 포터블 실행
+                파일을 원하는 폴더에 두고, 그 옆에 <code>norirepo</code> 폴더를 만들면 모든 데이터가 그 안에 저장됩니다.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="guide.add.title">카트리지 넣기</h3>
+              <p class="muted" data-i18n-html="guide.add.body">
+                <a href="https://tst.norihub.org" target="_blank" rel="noopener noreferrer">NoriHub</a> 에서 받은
+                <code>.nori</code> 파일을 홈 화면에 끌어다 놓거나, <b>파일 → 카트리지 추가</b>로 넣습니다. 넣은
+                카트리지는 라이브러리에 보관되고, 열기 전에 체크섬을 검사합니다.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="guide.play.title">플레이</h3>
+              <p class="muted" data-i18n-html="guide.play.body">
+                홈에서 카드를 고르고(← → · 마우스 휠) <b>Play</b> 나 <kbd>Enter</kbd>. 게임 중 <kbd>P</kbd> 를 누르면
+                게임이 일시정지된 채 홈으로 나오고, 다시 <kbd>P</kbd> 나 카드를 누르면 이어집니다. 다른 카트리지를
+                실행하면 뒤에 남은 게임은 꺼집니다.
+              </p>
+            </li>
+            <li>
+              <h3 data-i18n="guide.saves.title">세이브 · 카트리지 관리</h3>
+              <p class="muted" data-i18n-html="guide.saves.body">
+                카드의 톱니 메뉴(또는 오른쪽 클릭)에서 세이브 백업(zip) · 복원 · 지우기, 카트리지 내보내기, 게임 종료,
+                삭제를 합니다. 카트리지를 지워도 세이브는 남아 다시 넣으면 이어서 할 수 있습니다.
+              </p>
+            </li>
+          </ol>
+          <div class="facts">
+            <div>
+              <h3 data-i18n="facts.settings.title">설정</h3>
+              <p class="muted" data-i18n-html="facts.settings.body">
+                <b>Config</b> 메뉴에서 언어(한국어 · English), 키 배치, 소리 크기, 배속(×1.5 ~ ×4)을 바꿉니다. 창 크기는
+                <b>보기</b> 메뉴(×0.5 · ×1 · ×1.5), 전체화면은 <kbd>F11</kbd>.
+              </p>
+            </div>
+            <div>
+              <h3 data-i18n="facts.data.title">데이터 위치</h3>
+              <p class="muted" data-i18n-html="facts.data.body">
+                기본은 <code>%APPDATA%\norideck</code>, 포터블 모드는 <code>norirepo\</code>. 카트리지 하나가
+                <code>games\&lt;id&gt;\</code> 폴더 하나이고 세이브는 그 안의 <code>saves\</code> 에 있습니다. Config
+                메뉴의 게임 폴더 · 데이터 폴더로 바로 열 수 있고, 폴더를 복사하면 게임과 세이브가 함께 백업됩니다.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="controls">
+        <div class="wrap">
+          <h2 data-i18n="keys.title">기본 키</h2>
+          <p class="muted" style="margin-top: 8px" data-i18n="keys.lead">
+            Config → 키 배치에서 기기 그림의 버튼 칸을 누르고 새 키를 누르면 바로 바뀝니다 (Esc 는 취소).
+          </p>
+          <!-- 콘솔 0.1.3 기본값 (NoriDeck runtime/src/console/keymap.ts) -->
+          <div class="keys">
+            <div class="key">
+              <div class="cap"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></div>
+              <span data-i18n="keys.dpad">십자키 (방향키도 가능)</span>
+            </div>
+            <div class="key">
+              <div class="cap"><kbd>H</kbd><kbd>J</kbd><kbd>K</kbd><kbd>L</kbd></div>
+              <span>A · B · X · Y</span>
+            </div>
+            <div class="key">
+              <div class="cap"><kbd>Y</kbd><kbd>U</kbd></div>
+              <span>L · R</span>
+            </div>
+            <div class="key">
+              <div class="cap"><kbd>I</kbd><kbd>O</kbd></div>
+              <span>SELECT · START</span>
+            </div>
+            <div class="key">
+              <div class="cap"><kbd>P</kbd></div>
+              <span data-i18n="keys.home">홈 / 이어하기</span>
+            </div>
+            <div class="key">
+              <div class="cap"><kbd>Tab</kbd></div>
+              <span data-i18n="keys.speed">배속 켜기 · 끄기 (기본 ×3)</span>
+            </div>
+            <div class="key">
+              <div class="cap"><kbd>F11</kbd></div>
+              <span data-i18n="keys.fullscreen">전체화면</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="dev" class="tint">
+        <div class="wrap split">
+          <div>
+            <h2 data-i18n="dev.title">카트리지 만들기</h2>
+            <p class="muted" style="margin-top: 12px" data-i18n-html="dev.body">
+              카트리지는 TypeScript 로 만듭니다. NoriDeck 저장소 없이 <code>npm create nori</code> 로 시작하고,
+              <code>nori build</code> 로 .nori 파일을 만듭니다. 기본 화면은 16:9 480×270 이며
+              매니페스트(<code>nori.json</code>)에서 정합니다.
+            </p>
+            <p class="muted" style="margin-top: 12px" data-i18n-html="dev.hub">
+              만든 카트리지는
+              <a href="https://tst.norihub.org" target="_blank" rel="noopener noreferrer" style="color: var(--mint-ink)"
+                >NoriHub</a
+              >
+              에 로그인한 뒤 <b>등록</b>에서 .nori 파일을 올리면 검사를 거쳐 바로 공개됩니다.
+            </p>
+            <ul class="links-inline">
+              <li>
+                <a href="https://www.npmjs.com/package/@nghslab/nori-sdk" target="_blank" rel="noopener noreferrer"
+                  >@nghslab/nori-sdk ↗</a
+                >
+              </li>
+              <li>
+                <a href="https://www.npmjs.com/package/@nghslab/nori-cli" target="_blank" rel="noopener noreferrer"
+                  >@nghslab/nori-cli ↗</a
+                >
+              </li>
+            </ul>
+          </div>
+          <pre class="term"><span class="p">$ </span>npm create nori my-game
+<span class="p">$ </span>cd my-game
+<span class="p">$ </span>npx nori check
+<span class="p">$ </span>npx nori build</pre>
+        </div>
+      </section>
+
+      <section id="links">
+        <div class="wrap">
+          <h2 data-i18n="links.title">관련 링크</h2>
+          <div class="link-cards">
+            <a class="link-card" href="https://tst.norihub.org" target="_blank" rel="noopener noreferrer"
+              ><span class="strong">NoriHub ↗</span
+              ><span class="muted" data-i18n="links.hub">카트리지 찾기 · 내려받기 · 등록 (테스트 운영 중)</span></a
+            >
+            <a class="link-card" href="/download"
+              ><span class="strong" data-i18n="links.download.title">다운로드</span
+              ><span class="muted" data-i18n="links.download.desc">설치 파일 · 포터블 · 릴리스 노트</span></a
+            >
+            <a class="link-card" href="/download#history"
+              ><span class="strong" data-i18n="links.releases.title">릴리스 노트</span
+              ><span class="muted" data-i18n="links.releases.desc">버전별 변경 내역</span></a
+            >
+            <a
+              class="link-card"
+              href="https://www.npmjs.com/package/@nghslab/nori-sdk"
+              target="_blank"
+              rel="noopener noreferrer"
+              ><span class="strong">SDK ↗</span
+              ><span class="muted" data-i18n="links.sdk.desc">카트리지 개발용 npm 패키지</span></a
+            >
+          </div>
+        </div>
+      </section>
+    </main>
+    <footer>
+      <div class="wrap"><span>© 2026 NGHSLab</span></div>
+    </footer>
+  </body>
+</html>

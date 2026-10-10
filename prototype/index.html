@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NoriDeck — 누구나 만들고, 누구나 즐기는 무료 게임 콘솔</title>
+  <meta name="description" content="NoriDeck은 자체 게임팩 포맷(.nori)을 실행하는 무료 데스크톱 게임 콘솔입니다. Windows, macOS, Linux에서 바로 설치하세요.">
+  <meta property="og:title" content="NoriDeck">
+  <meta property="og:description" content="누구나 만들고, 누구나 즐기는 무료 게임 콘솔">
+  <meta property="og:image" content="assets/deck-front@2x.png">
+  <link rel="icon" href="assets/logo-mark.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f7f9fa; --bg-2:#eef3f4; --panel:#ffffff; --line:rgba(10,24,32,.09);
+      --text:#0e1a22; --muted:#5b6d77;
+      --mint:#3df0d2; --mint-ink:#0e9c86; --blue:#2f7bff; --mint-dim:rgba(61,240,210,.18);
+      --ink:#0b0f14;
+      --radius:18px; --max:1120px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Noto Sans KR",system-ui,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+    h1,h2,h3{margin:0;line-height:1.15;letter-spacing:-.02em}
+    h2{font-size:clamp(28px,4vw,40px);font-weight:800}
+    p{margin:0}
+    .muted{color:var(--muted)}
+    .eyebrow{display:inline-block;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--mint-ink);margin-bottom:14px}
+
+    /* buttons */
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;font-weight:600;font-size:15px;border:1px solid transparent;transition:transform .15s,box-shadow .15s,background .15s;white-space:nowrap}
+    .btn:hover{transform:translateY(-1px)}
+    .btn-primary{background:var(--ink);color:#ffffff;box-shadow:0 10px 24px rgba(11,15,20,.18)}
+    .btn-primary:hover{background:#1a2530;box-shadow:0 14px 30px rgba(11,15,20,.24)}
+    .btn-ghost{border-color:rgba(10,24,32,.14);background:#ffffff}
+    .btn-ghost:hover{background:#f0f4f5}
+    .btn small{font-weight:400;opacity:.7;font-size:12px}
+
+    /* nav */
+    .nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(247,249,250,.8);border-bottom:1px solid var(--line)}
+    .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:18px;letter-spacing:-.01em}
+    .brand img{width:22px;height:auto}
+    .nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
+    .nav-links a:hover{color:var(--text)}
+    .nav-links .hub{color:var(--mint-ink);font-weight:600;display:inline-flex;align-items:center;gap:3px}
+    .nav-links .ext{font-size:11px;opacity:.7}
+    .nav .btn{padding:9px 16px;font-size:13px}
+    @media (max-width:760px){.nav-links{display:none}}
+
+    /* hero */
+    .hero{position:relative;overflow:hidden;padding:80px 0 40px}
+    .hero::before{content:"";position:absolute;inset:-20% -10% auto;height:120%;background:radial-gradient(60% 50% at 70% 40%,rgba(61,240,210,.28),transparent 60%),radial-gradient(40% 40% at 20% 80%,rgba(47,123,255,.12),transparent 60%);pointer-events:none}
+    .hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr 1fr;gap:40px;align-items:center}
+    .hero h1{font-size:clamp(40px,6vw,66px);font-weight:800}
+    .hero h1 em{font-style:normal;background:linear-gradient(90deg,#0e9c86,#2f7bff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .hero .lead{font-size:18px;margin:22px 0 32px;max-width:520px}
+    .hero .cta{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .hero .fine{margin-top:14px;font-size:13px}
+    .hero .fine a{color:var(--mint-ink)}
+    .hero-art{position:relative}
+    .hero-art img{width:100%;filter:drop-shadow(0 30px 50px rgba(14,26,34,.22))}
+    @media (max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero-art{order:-1;max-width:520px;margin:0 auto}}
+
+    /* logo strip */
+    .strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:18px 0;font-size:13px;color:var(--muted);background:#ffffff}
+    .strip .wrap{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+    .strip b{color:var(--text);font-weight:600}
+
+    /* sections */
+    section{padding:96px 0}
+    .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+    @media (max-width:860px){.grid-3{grid-template-columns:1fr}}
+    .card{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 2px 12px rgba(14,26,34,.05)}
+    .card .ico{width:44px;height:44px;border-radius:12px;background:var(--mint-dim);display:grid;place-items:center;margin-bottom:18px;color:var(--mint-ink)}
+    .card h3{font-size:19px;font-weight:700;margin-bottom:10px}
+    .card p{font-size:15px;color:var(--muted)}
+
+    .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .split.rev>.art{order:2}
+    @media (max-width:860px){.split{grid-template-columns:1fr}.split.rev>.art{order:0}}
+    .split .art img{filter:drop-shadow(0 24px 40px rgba(14,26,34,.2))}
+    .split ul{list-style:none;padding:0;margin:24px 0 0;display:grid;gap:14px}
+    .split li{display:flex;gap:12px;align-items:flex-start;color:var(--muted);font-size:15px}
+    .split li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--mint-ink);margin-top:9px;box-shadow:0 0 0 4px var(--mint-dim)}
+    .split li b{color:var(--text);font-weight:600}
+
+    pre{margin:0;background:#0b0f14;border:1px solid #0b0f14;border-radius:14px;padding:20px;font-size:13px;line-height:1.7;overflow-x:auto;color:#cfe8e4}
+    pre .k{color:var(--mint)} pre .s{color:#ffd27d} pre .c{color:#5f7783}
+
+    .banner{padding:0 0 40px}
+    .banner .box{background:linear-gradient(180deg,#ffffff,var(--bg-2));border:1px solid var(--line);border-radius:28px;padding:40px 24px 0;overflow:hidden;text-align:center}
+    .banner h2{margin-bottom:10px}
+    .banner img{margin:20px auto 0;max-width:1000px}
+
+    /* download */
+    #download .table{margin-top:36px;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+    #download .row{display:grid;grid-template-columns:1.2fr 1fr 1fr auto;gap:16px;align-items:center;padding:18px 24px;border-top:1px solid var(--line);background:var(--panel)}
+    #download .row:first-child{border-top:0;background:var(--bg-2);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    #download .row b{font-weight:600}
+    #download .row .muted{font-size:14px}
+    @media (max-width:760px){#download .row{grid-template-columns:1fr auto}#download .row>span:nth-child(2),#download .row>span:nth-child(3){display:none}}
+
+    footer{border-top:1px solid var(--line);padding:40px 0;font-size:13px;color:var(--muted)}
+    footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    footer nav{display:flex;gap:20px}
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/logo-mark.svg" alt="">NoriDeck</a>
+    <nav class="nav-links">
+      <a href="#features">특징</a>
+      <a href="#packs">게임팩</a>
+      <a href="#dev">개발자</a>
+      <a href="#download">다운로드</a>
+      <a href="https://hub.norideck.com" class="hub" target="_blank" rel="noopener">NoriHub<span class="ext" aria-hidden="true">↗</span></a>
+    </nav>
+    <a class="btn btn-primary" href="#download">다운로드</a>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Free · Open · Cross-platform</span>
+      <h1>누구나 만들고,<br>누구나 즐기는 <em>게임 콘솔</em></h1>
+      <p class="lead muted">NoriDeck은 자체 게임팩 포맷 <b style="color:var(--text)">.nori</b>를 실행하는 무료 데스크톱 콘솔입니다. 설치하고, 게임팩을 넣고, 바로 플레이하세요. 전부 무료입니다.</p>
+      <div class="cta">
+        <a class="btn btn-primary" id="dl-main" href="#download">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+          <span id="dl-label">다운로드</span>
+        </a>
+        <a class="btn btn-ghost" href="#packs">게임팩 둘러보기</a>
+      </div>
+      <p class="fine muted">v0.1.0 · Windows 10+, macOS 12+, Ubuntu 22.04+ · <a href="#download">다른 플랫폼</a></p>
+    </div>
+    <div class="hero-art">
+      <img src="assets/deck-hero-left.webp" alt="NoriDeck 콘솔" width="720" height="520">
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span><b>무료</b></span>
+    <span><b>MIT</b> 오픈소스 런타임</span>
+    <span><b>3</b> 플랫폼 지원</span>
+    <span><b>자동 업데이트</b> 내장</span>
+  </div>
+</div>
+
+<section id="features">
+  <div class="wrap">
+    <span class="eyebrow">Why NoriDeck</span>
+    <h2>에뮬레이터의 편함,<br>플랫폼의 자유</h2>
+    <div class="grid-3">
+      <div class="card">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16v10H4zM8 12h3M9.5 10.5v3M16 11h.01M18 13h.01"/></svg></div>
+        <h3>콘솔처럼 단순하게</h3>
+        <p>게임팩 파일을 더블클릭하면 끝입니다. 설정 없이 키보드와 게임패드가 바로 동작합니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v18M3 12h18M6 6l12 12M18 6 6 18"/></svg></div>
+        <h3>어디서나 같은 결과</h3>
+        <p>Electron 기반 런타임이 Windows, macOS, Linux에서 동일한 화면과 입력을 보장합니다.</p>
+      </div>
+      <div class="card">
+        <div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2 3 7l9 5 9-5-9-5zM3 12l9 5 9-5M3 17l9 5 9-5"/></svg></div>
+        <h3>게임팩 생태계</h3>
+        <p>누구나 게임팩을 만들고 카탈로그에 올릴 수 있습니다. 세이브, 업데이트, 버전 관리를 런타임이 처리합니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="packs" style="background:var(--bg-2)">
+  <div class="wrap split">
+    <div class="art"><img src="assets/deck-hero-right.webp" alt="" width="720" height="520"></div>
+    <div>
+      <span class="eyebrow">Game Packs</span>
+      <h2>.nori 하나면<br>게임 하나</h2>
+      <p class="muted" style="margin-top:18px">게임팩은 코드, 에셋, 메타데이터를 하나로 묶은 파일입니다. 설치 과정이 없고, 삭제도 파일 하나만 지우면 됩니다.</p>
+      <ul>
+        <li><b>NoriHub에서 바로 설치</b> hub.norideck.com에 올라온 게임팩을 앱 안에서 검색하고 한 번 클릭하면 실행됩니다.</li>
+        <li><b>세이브는 안전하게</b> 게임팩과 세이브 데이터가 분리되어 업데이트해도 진행 상황이 남습니다.</li>
+        <li><b>서명과 검증</b> 모든 게임팩은 SHA-256 해시로 검증되고, 심사를 거친 팩에는 배지가 붙습니다.</li>
+      </ul>
+      <div class="cta" style="margin-top:28px"><a class="btn btn-ghost" href="https://hub.norideck.com" target="_blank" rel="noopener">NoriHub에서 게임팩 찾기</a></div>
+    </div>
+  </div>
+</section>
+
+<section id="dev">
+  <div class="wrap split rev">
+    <div class="art">
+<pre><span class="c">// game.js — NoriDeck API 예시</span>
+<span class="k">import</span> { deck } <span class="k">from</span> <span class="s">'norideck'</span>;
+
+deck.<span class="k">init</span>({ width: <span class="s">240</span>, height: <span class="s">160</span>, fps: <span class="s">60</span> });
+
+deck.<span class="k">update</span>(() =&gt; {
+  <span class="k">if</span> (deck.input.pressed(<span class="s">'A'</span>)) player.jump();
+  player.step();
+});
+
+deck.<span class="k">draw</span>((g) =&gt; {
+  g.clear(<span class="s">'#081419'</span>);
+  g.sprite(player.sprite, player.x, player.y);
+});</pre>
+    </div>
+    <div>
+      <span class="eyebrow">For Developers</span>
+      <h2>자바스크립트로<br>게임팩 만들기</h2>
+      <p class="muted" style="margin-top:18px">별도 엔진을 배울 필요가 없습니다. 작은 API 하나로 입력, 그래픽, 사운드, 저장을 다룹니다.</p>
+      <ul>
+        <li><b>240×160 픽셀 캔버스</b> 레트로 해상도로 시작하고, 필요하면 HD 모드를 켭니다.</li>
+        <li><b>CLI 한 줄로 패키징</b> <code style="font-family:ui-monospace,monospace;color:var(--mint-ink)">nori pack ./my-game</code></li>
+        <li><b>핫 리로드 개발 모드</b> 저장하면 콘솔 화면이 즉시 갱신됩니다.</li>
+      </ul>
+      <div class="cta" style="margin-top:28px">
+        <a class="btn btn-primary" href="#">SDK 문서 보기</a>
+        <a class="btn btn-ghost" href="#">예제 게임팩</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="banner">
+  <div class="wrap">
+    <div class="box">
+      <span class="eyebrow">One runtime, every desktop</span>
+      <h2>어떤 각도에서 봐도 같은 콘솔</h2>
+      <p class="muted">Windows, macOS, Linux에서 픽셀 단위로 동일하게 동작합니다.</p>
+      <img src="assets/deck-trio.webp" alt="" width="1200" height="560">
+    </div>
+  </div>
+</div>
+
+<section id="download">
+  <div class="wrap">
+    <span class="eyebrow">Download</span>
+    <h2>지금 설치하기</h2>
+    <p class="muted" style="margin-top:12px">최신 버전 <b style="color:var(--text)">v0.1.0</b> · 2026-09-05 · <a href="#" style="color:var(--mint-ink)">릴리스 노트</a></p>
+    <div class="table">
+      <div class="row"><span>플랫폼</span><span>형식</span><span>크기</span><span></span></div>
+      <div class="row" data-os="win"><b>Windows 10 이상 (x64)</b><span class="muted">.exe 설치 파일</span><span class="muted">84 MB</span><a class="btn btn-ghost" href="#">다운로드</a></div>
+      <div class="row" data-os="mac"><b>macOS 12 이상 (Apple Silicon / Intel)</b><span class="muted">.dmg</span><span class="muted">96 MB</span><a class="btn btn-ghost" href="#">다운로드</a></div>
+      <div class="row" data-os="linux"><b>Linux (x64)</b><span class="muted">.AppImage / .deb</span><span class="muted">90 MB</span><a class="btn btn-ghost" href="#">다운로드</a></div>
+    </div>
+    <p class="muted" style="margin-top:16px;font-size:13px">모든 설치 파일은 코드 서명되어 있으며 SHA-256 체크섬을 릴리스 페이지에서 확인할 수 있습니다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand" style="font-size:15px"><img src="assets/logo-mark.svg" alt="">NoriDeck</div>
+    <nav>
+      <a href="https://hub.norideck.com" target="_blank" rel="noopener">NoriHub</a><a href="#">문서</a><a href="https://github.com/norideck" target="_blank" rel="noopener">GitHub</a><a href="#">개인정보 처리방침</a>
+    </nav>
+    <span>© 2026 NoriDeck. MIT License.</span>
+  </div>
+</footer>
+
+<script>
+  // OS detection for the main download button
+  (function () {
+    var ua = navigator.userAgent, os = 'win', label = 'Windows용 다운로드';
+    if (/Macintosh|Mac OS X/.test(ua)) { os = 'mac'; label = 'macOS용 다운로드'; }
+    else if (/Linux/.test(ua) && !/Android/.test(ua)) { os = 'linux'; label = 'Linux용 다운로드'; }
+    var row = document.querySelector('[data-os="' + os + '"]');
+    var link = row && row.querySelector('a');
+    var main = document.getElementById('dl-main');
+    if (link) main.href = link.getAttribute('href');
+    document.getElementById('dl-label').textContent = label;
+    if (row) row.style.background = 'rgba(61,240,210,.10)';
+  })();
+</script>
+</body>
+</html>

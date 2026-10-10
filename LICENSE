@@ -1,0 +1,30 @@
+NGHSLab Proprietary License
+
+Copyright (c) 2026 NGHSLab. All rights reserved.
+
+This repository, including its source code, documentation, text, images,
+and other materials (the "Software"), is the property of NGHSLab.
+
+The Software is made publicly visible for reference only. Viewing the
+Software does not grant any license. Except as expressly permitted in
+writing by NGHSLab, you may not copy, modify, merge, publish, distribute,
+sublicense, sell, host, or create derivative works of the Software, in
+whole or in part.
+
+The names "NGHSLab", "NoriDeck", and "NoriHub", and the related logos and
+artwork, may not be used without prior written permission from NGHSLab.
+
+Third-party components included in this repository are licensed under
+their own terms and are not covered by this license:
+
+  DOMPurify (site/assets/vendor/purify.es.js)
+    Apache License 2.0 or Mozilla Public License 2.0
+    See site/assets/vendor/purify.LICENSE.txt
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+NGHSLAB BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+For permission requests, contact NGHSLab at https://nghslab.org.
